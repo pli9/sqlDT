@@ -4,7 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `sqlDT` R package allows you to run a SQL query on a single table to create a `DataTable`, using the `alasql` and `DataTable` javascript libraries. This is best used with the `crosstalk` R package, to allow dynamic filtering of the underlying data.
+The `sqlDT` R package allows you to run a SQL query on a single table to create a `DataTable`, using the `AlaSQL` and `DataTable` javascript libraries. This is best used with the `crosstalk` R package, to allow dynamic filtering of the underlying data.
 
 An example of a `sqlDT` is available on this page: <https://pli9.github.io/sqlDT/>
 
