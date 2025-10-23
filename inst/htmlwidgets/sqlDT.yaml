@@ -1,0 +1,15 @@
+# (uncomment to add a dependency)
+dependencies:
+ - name: alasql
+   version: 4.6.6
+   src: htmlwidgets/lib/alasql-4.6.6
+   script: alasql.min.js
+ - name: jquery
+   version: 3.6.0
+   src: htmlwidgets/lib/jquery-3.6.0
+   script: jquery-3.6.0.min.js
+ - name: dataTables
+   version: 2.3.4
+   src: htmlwidgets/lib/dataTables-2.3.4
+   script: dataTables.min.js
+   stylesheet: dataTables.dataTables.css
