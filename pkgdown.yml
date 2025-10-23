@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   example: example.html
-last_built: 2025-10-23T15:30Z
+last_built: 2025-10-23T15:34Z
 urls:
   reference: https://pli9.github.io/sqlDT/reference
   article: https://pli9.github.io/sqlDT/articles
