@@ -30,6 +30,6 @@ the \code{crosstalk}package, to allow dynamic filtering of the underlying data.
 library(sqlDT)
 data_iris <- iris
 names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
-sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species", width = '100\%', height = '100\%')
+sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
 
 }

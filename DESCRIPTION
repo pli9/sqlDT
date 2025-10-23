@@ -1,11 +1,10 @@
 Package: sqlDT
-Title: Display rates from the numerator and denominator in linked data
+Title: Display a DataTable from a SQL Query with Crosstalk Support
 Version: 0.0.0.9000
 Authors@R: person("Peter", "Li", email = "temp@gmail.com", role = c("aut", "cre"))
-Description: A `sqlDT` displays a single statistic derived from a linked
-  table, where the numerator and denominator columns are specific. This is best
-  used with the `crosstalk`package, to allow dynamic filtering of the underlying
-  data.
+Description: sqlDT is an HTMLwidget which works with Crosstalk to execute a SQL query 
+  on a single input table, and output that using DataTables. This table updates when 
+  the crosstalk brushing or filtering is applied.
 URL: https://github.com/pli9/sqlDT, https://pli9.github.io/sqlDT/
 BugReports: https://github.com/pli9/sqlDT/issues
 License: MIT + file LICENSE
