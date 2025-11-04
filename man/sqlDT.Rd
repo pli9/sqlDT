@@ -2,18 +2,27 @@
 % Please edit documentation in R/sqlDT.R
 \name{sqlDT}
 \alias{sqlDT}
-\title{Show the summary proportion in a widget}
+\title{Show the result of a SQL query on a data frame as an interactive DataTable}
 \usage{
-sqlDT(data, query, width = "100\%", height = "100\%", elementId = NULL)
+sqlDT(
+  data,
+  query,
+  options = NULL,
+  width = "100\%",
+  height = "100\%",
+  elementId = NULL
+)
 }
 \arguments{
 \item{data}{A data frame or data table containing the data to summarize,
 with at least two numeric columns: one for the numerator and one for the
 denominator. Normally, this should be an instance of \link[crosstalk:SharedData]{crosstalk::SharedData}.}
 
-\item{query}{A SQL query string to filter the data before calculating the statistic.
+\item{query}{A SQL query string to query the data before displaying the table.
 The \verb{?} placeholder will be replaced with the data specified in the function.
 For example: "SELECT * FROM ?"}
+
+\item{options}{A list of options to customize the DataTable display. See \href{https://datatables.net/reference/option/}{DataTables options} for available settings.}
 
 \item{width}{The width of the widget (optional).}
 
@@ -22,14 +31,27 @@ For example: "SELECT * FROM ?"}
 \item{elementId}{An optional element ID for the widget.}
 }
 \description{
-A \code{sqlDT} displays a single statistic derived from a linked table, where
-the numerator and denominator columns are specific. This is best used with
-the \code{crosstalk}package, to allow dynamic filtering of the underlying data.
+A \code{sqlDT} widget displays the result of a SQL query on a data frame using
+the DataTables and AlaSQL libraries. The SQL query can include aggregation
+functions, filtering, and grouping to summarize the data as needed. This is
+best used with the \code{crosstalk}package, to allow dynamic filtering of the
+underlying data.
 }
 \examples{
 library(sqlDT)
 data_iris <- iris
-names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
-sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
+names(data_iris) <- c(
+"SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species"
+)
+sqlDT(
+  data_iris,
+  query = "
+    SELECT
+      Species,
+      round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length
+    FROM ?
+    GROUP BY Species
+  "
+)
 
 }

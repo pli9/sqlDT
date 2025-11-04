@@ -1,13 +1,15 @@
-#' Show the summary proportion in a widget
+#' Show the result of a SQL query on a data frame as an interactive DataTable
 #'
-#' A `sqlDT` displays a single statistic derived from a linked table, where
-#' the numerator and denominator columns are specific. This is best used with
-#' the `crosstalk`package, to allow dynamic filtering of the underlying data.
+#' A `sqlDT` widget displays the result of a SQL query on a data frame using
+#' the DataTables and AlaSQL libraries. The SQL query can include aggregation
+#' functions, filtering, and grouping to summarize the data as needed. This is
+#' best used with the `crosstalk`package, to allow dynamic filtering of the
+#' underlying data.
 #'
 #' @param data A data frame or data table containing the data to summarize,
 #' with at least two numeric columns: one for the numerator and one for the
 #' denominator. Normally, this should be an instance of [crosstalk::SharedData].
-#' @param query A SQL query string to filter the data before calculating the statistic.
+#' @param query A SQL query string to query the data before displaying the table.
 #' The `?` placeholder will be replaced with the data specified in the function.
 #' For example: "SELECT * FROM ?"
 #' @param options A list of options to customize the DataTable display. See [DataTables options](https://datatables.net/reference/option/) for available settings.
@@ -23,8 +25,19 @@
 #' @examples
 #' library(sqlDT)
 #' data_iris <- iris
-#' names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
-#' sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
+#' names(data_iris) <- c(
+#' "SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species"
+#' )
+#' sqlDT(
+#'   data_iris,
+#'   query = "
+#'     SELECT
+#'       Species,
+#'       round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length
+#'     FROM ?
+#'     GROUP BY Species
+#'   "
+#' )
 #'
 sqlDT <- function(
   data,
