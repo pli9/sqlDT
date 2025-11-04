@@ -10,6 +10,7 @@
 #' @param query A SQL query string to filter the data before calculating the statistic.
 #' The `?` placeholder will be replaced with the data specified in the function.
 #' For example: "SELECT * FROM ?"
+#' @param options A list of options to customize the DataTable display. See [DataTables options](https://datatables.net/reference/option/) for available settings.
 #' @param width The width of the widget (optional).
 #' @param height The height of the widget (optional).
 #' @param elementId An optional element ID for the widget.
@@ -25,7 +26,14 @@
 #' names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
 #' sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
 #'
-sqlDT <- function(data, query, width = '100%', height = '100%', elementId = NULL) {
+sqlDT <- function(
+  data,
+  query,
+  options = NULL,
+  width = '100%',
+  height = '100%',
+  elementId = NULL
+) {
 
   if (is.SharedData(data)) {
     # Using Crosstalk
@@ -57,6 +65,7 @@ sqlDT <- function(data, query, width = '100%', height = '100%', elementId = NULL
     data = data,
     settings = list(
       query = query,
+      options = options,
       crosstalk_key = key,
       crosstalk_group = group
     )

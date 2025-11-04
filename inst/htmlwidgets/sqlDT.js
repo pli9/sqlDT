@@ -55,16 +55,14 @@ HTMLWidgets.widget({
               columns.push({data: result_keys[i], title: result_keys[i]});
             }
           }
-
-          $('#' + table_id).DataTable({
-            data: result,
-            columns: columns,
-            pageLength: 500,
-            paging: false,
-            searching: true,
-            ordering: true,
-            info: false
-          });
+          
+          // Initialize the DataTable
+          $('#' + table_id).DataTable(
+            $.extend(true, {}, x.settings.options, {
+              data: result,
+              columns: columns
+            })
+          );
           
         };
 
