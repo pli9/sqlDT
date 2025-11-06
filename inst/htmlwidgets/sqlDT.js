@@ -54,7 +54,7 @@ HTMLWidgets.widget({
           table_id = 'dataTable-' + Math.floor(Math.random() * 1000000000);
 
           // Clear the existing contents of el and add a table element
-          $(el).html('<table id="' + table_id + '" class="display" style="width:100%"></table>');
+          $(el).html('<table id="dataTable-' + el.id + '" class="display" style="width:100%"></table>');
 
           // Create an array for the columns definition for DataTables for the result table
           var columns = [];
@@ -66,7 +66,7 @@ HTMLWidgets.widget({
           }
           
           // Initialize the DataTable
-          $('#' + table_id).DataTable(
+          $('#dataTable-' + el.id).DataTable(
             $.extend(true, {}, x.settings.options, {
               data: result,
               columns: columns
