@@ -1,6 +1,6 @@
 Package: sqlDT
 Title: Display a DataTable from a SQL Query with Crosstalk Support
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: person("Peter", "Li", email = "peterli2405@gmail.com", role = c("aut", "cre"))
 Description: sqlDT is an HTMLwidget which works with Crosstalk to execute a SQL query 
   on a single input table, and output that using DataTables. This table updates when 
