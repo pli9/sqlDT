@@ -23,12 +23,21 @@ HTMLWidgets.widget({
         // Transpose the data from column-oriented to row-oriented
         var data = x.data;
         var data_keys = Object.keys(data);
-        var crosstalk_keys = x.settings.crosstalk_key;
+        // Check if there are crosstalk keys provided
+        if (x.settings.crosstalk_key != null) {
+          var row_keys = x.settings.crosstalk_key;
+        } else {
+          // Otherwise generate row keys as serial numbers
+          var row_keys = [];
+          for (var i=0; i<data[data_keys[0]].length; i++) {
+            row_keys.push(i.toString());
+          }
+        }
         var transpose_data = {};
-        for (var i=0; i<crosstalk_keys.length; i++) {
-          transpose_data[crosstalk_keys[i]] = {};
+        for (var i=0; i<row_keys.length; i++) {
+          transpose_data[row_keys[i]] = {};
           for (var j=0; j<data_keys.length; j++) {
-            transpose_data[crosstalk_keys[i]][data_keys[j]] = data[data_keys[j]][i];
+            transpose_data[row_keys[i]][data_keys[j]] = data[data_keys[j]][i];
           }          
         }
 
