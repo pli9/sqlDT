@@ -51,8 +51,6 @@ HTMLWidgets.widget({
           }
           var result = alasql(x.settings.query, [new_data]);
 
-          table_id = 'dataTable-' + Math.floor(Math.random() * 1000000000);
-
           // Clear the existing contents of el and add a table element
           $(el).html('<table id="dataTable-' + el.id + '" class="display" style="width:100%"></table>');
 
