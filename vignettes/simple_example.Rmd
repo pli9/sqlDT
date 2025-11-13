@@ -1,5 +1,10 @@
 ---
-title: "Example sqlDT use case"
+title: "Simple sqlDT example with crosstalk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Simple sqlDT example with crosstalk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

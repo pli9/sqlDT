@@ -1,0 +1,97 @@
+---
+title: "Example arguments for sqlDT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example arguments for sqlDT}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+library(sqlDT)
+data_iris <- iris
+names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
+```
+
+The `sqlDT` function has several options that can be used to customize the behavior and appearance of the resulting DataTable. Below are some examples of how to use these options.
+
+# Query options using AlaSQL
+
+You can use various SQL queries to manipulate the data before displaying it in the DataTable. The data.frame used for the query is denoted by a "?" in the query.
+
+For a full list of supported SQL statements, see the Alasql GitHub page for [Supported SQL statements](https://github.com/AlaSQL/alasql/wiki/Supported-SQL-statements).
+
+For a full list of supported SQL keywords, see the AlaSQL GitHub page for [SQL Compatability](https://github.com/alasql/alasql/wiki/SQL%20keywords).
+
+Here are some example use cases with the `sqlDT` function:
+
+## Select all data
+
+```{r query-options}
+sqlDT(data_iris, query = "SELECT * FROM ?")
+```
+
+## Select specific columns
+
+```{r select-columns}
+sqlDT(data_iris, query = "SELECT SepalLength, SepalWidth, Species FROM ?")
+```
+
+## Use aliases
+
+```{r aliases}
+sqlDT(data_iris, query = "SELECT SepalLength AS SL, SepalWidth AS `Sepal Width` FROM ?")
+```
+
+## Aggregate functions
+```{r aggregate-functions}
+sqlDT(data_iris, query = "SELECT Species, AVG(SepalLength) AS Avg_SepalLength FROM ? GROUP BY Species")
+```
+
+## Filtering data
+```{r filtering-data}
+sqlDT(data_iris, query = "SELECT * FROM ? WHERE SepalLength > 5.0")
+```
+
+## Sorting data
+```{r sorting-data}
+sqlDT(data_iris, query = "SELECT * FROM ? ORDER BY SepalLength DESC")
+```
+
+# DataTable options
+
+The result of the query is returned using the DataTables javascript library. The `sqlDT` function also allows you to customise the DataTable using various options. 
+
+For a full list of customisations available, see the DataTables documentation for [Options](https://datatables.net/reference/option/).
+
+Here are some example use cases with the `sqlDT` function:
+
+## Pagination
+```{r pagination}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(pageLength = 5))
+```
+
+## Searching
+```{r searching}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(searching = TRUE))
+```
+
+## Column visibility
+```{r column-visibility}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(columnDefs = list(list(visible = FALSE, targets = c(2,3)))))
+```
+
+## Export buttons
+```{r export-buttons}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
+
+## Scrolling
+```{r scrolling}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(scrollY = '200px', scrollCollapse = TRUE, paging = FALSE))
+```
+
+## Sorting
+```{r sorting}
+sqlDT(data_iris, query = "SELECT * FROM ?", options = list(order = list(list(0, 'desc'))))
+```
