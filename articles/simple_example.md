@@ -1,0 +1,29 @@
+# Simple sqlDT example with crosstalk
+
+sqlDT is an [HTML widget](http://www.htmlwidgets.org) which works with
+[Crosstalk](https://rstudio.github.io/crosstalk/index.html) to execute a
+SQL query on a single input table, and output that using DataTables.
+This table updates when the crosstalk brushing or filtering is applied.
+
+Try the example below. Click the checkboxes, manipulate the slider and
+click rows in the data table. Watch the table update as the data
+selection changes.
+
+------------------------------------------------------------------------
+
+``` r
+bscols(widths = c(3,NA),
+  list(
+    filter_slider("SepalWidth", "Sepal Width", shared_iris, ~SepalWidth, width = "100%"),
+    filter_slider("PetalLength", "Petal Length", shared_iris, ~PetalLength, width = "100%"),
+    filter_slider("PetalWidth", "Petal Width", shared_iris, ~PetalWidth, width = "100%")
+  ),
+  sqlDT(shared_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
+)
+```
+
+Sepal Width
+
+Petal Length
+
+Petal Width

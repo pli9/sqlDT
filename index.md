@@ -1,0 +1,34 @@
+# sqlDT
+
+The `sqlDT` R package allows you to run a SQL query on a single table to
+create a `DataTable`, using the `AlaSQL` and `DataTable` javascript
+libraries. This is best used with the `crosstalk` R package, to allow
+dynamic filtering of the underlying data.
+
+An example of a `sqlDT` is available on this page:
+<https://pli9.github.io/sqlDT/>
+
+## Installation
+
+You can install the development version of sqlDT from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("pli9/sqlDT")
+```
+
+## Example
+
+This is a basic example which shows you how to create a simple `sqlDT`
+table:
+
+``` r
+library(sqlDT)
+## basic example code
+data_iris <- iris
+names(data_iris) <- c("SepalLength", "SepalWidth", "PetalLength", "PetalWidth", "Species")
+sqlDT(data_iris, query = "SELECT Species, round(sum(SepalLength)/count(*), 2) as Average_Sepal_Length FROM ? GROUP BY Species")
+```
+
+See the full documentation at <https://pli9.github.io/sqlDT/>.
