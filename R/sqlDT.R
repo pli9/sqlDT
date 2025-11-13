@@ -73,6 +73,11 @@ sqlDT <- function(
     stop("Column names in the data must be alphanumeric or underscores only.")
   }
 
+  # Remove order if order option is not present
+  if (is.null(options$order)) {
+    options$order <- list(list())
+  }
+
   # forward options using x
   x <- list(
     data = data,
